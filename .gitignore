@@ -1,0 +1,42 @@
+# IDE settings and local machine files
+.idea/
+.vscode/
+*.iml
+.DS_Store
+Thumbs.db
+
+# Python environments and generated files
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Downloaded speech models and runtimes (several GB; recreate with setup scripts)
+prototypes/stt-benchmark/models/*
+!prototypes/stt-benchmark/models/.gitkeep
+
+# Recordings may contain private voices; keep only directory placeholders
+prototypes/stt-benchmark/recordings/*
+!prototypes/stt-benchmark/recordings/.gitkeep
+
+# Generated benchmark data and temporary output
+prototypes/stt-benchmark/results/raw/*
+!prototypes/stt-benchmark/results/raw/.gitkeep
+prototypes/stt-benchmark/results/tmp/*
+!prototypes/stt-benchmark/results/tmp/.gitkeep
+prototypes/stt-benchmark/results/benchmark-results*.csv
+prototypes/stt-benchmark/results/system-info.json
+
+# Local reference data can contain participant details
+prototypes/stt-benchmark/references/manifest.local.json
+prototypes/stt-benchmark/references/private/
+
+# Common local secrets and logs
+.env
+.env.*
+!.env.example
+*.log

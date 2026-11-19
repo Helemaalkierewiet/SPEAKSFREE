@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f7f8fc" />
+    <title>Gespreksscherm</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">DJI Mic 3 · lokaal op deze computer</p>
+          <h1>Gespreksscherm</h1>
+        </div>
+        <div class="top-actions">
+          <span id="connectionBadge" class="status-badge waiting">Verbinden…</span>
+          <button id="fullscreenButton" class="button secondary" type="button">Volledig scherm</button>
+        </div>
+      </header>
+
+      <section id="warningPanel" class="warning-panel hidden" role="alert"></section>
+
+      <section class="speaker-grid" aria-label="Microfoons">
+        <article class="speaker-card blue" data-channel="0">
+          <div class="speaker-heading">
+            <span class="channel-dot"></span>
+            <label for="speakerOne">Zender 1</label>
+            <span id="activeOne" class="listening-pill">Stil</span>
+          </div>
+          <input id="speakerOne" class="speaker-name" maxlength="40" value="Spreker 1" aria-label="Naam van spreker 1" />
+          <div class="meter-track" aria-label="Geluidsniveau zender 1">
+            <div id="meterOne" class="meter-fill"></div>
+          </div>
+          <div class="meter-meta"><span id="dbOne">−60 dBFS</span><span id="thresholdOne">grens −48 dBFS</span></div>
+        </article>
+
+        <article class="speaker-card orange" data-channel="1">
+          <div class="speaker-heading">
+            <span class="channel-dot"></span>
+            <label for="speakerTwo">Zender 2</label>
+            <span id="activeTwo" class="listening-pill">Stil</span>
+          </div>
+          <input id="speakerTwo" class="speaker-name" maxlength="40" value="Spreker 2" aria-label="Naam van spreker 2" />
+          <div class="meter-track" aria-label="Geluidsniveau zender 2">
+            <div id="meterTwo" class="meter-fill"></div>
+          </div>
+          <div class="meter-meta"><span id="dbTwo">−60 dBFS</span><span id="thresholdTwo">grens −48 dBFS</span></div>
+        </article>
+      </section>
+
+      <section class="controls" aria-label="Bediening">
+        <button id="listenButton" class="button primary" type="button">Pauzeren</button>
+        <button id="clearButton" class="button secondary" type="button">Tekst wissen</button>
+        <button id="reconnectButton" class="button secondary" type="button">Microfoon opnieuw verbinden</button>
+        <button id="settingsButton" class="button text-button" type="button" aria-expanded="false">Instellingen</button>
+        <div class="device-summary">
+          <strong id="deviceName">DJI Mic 3 zoeken…</strong>
+          <span id="deviceDetails"></span>
+        </div>
+      </section>
+
+      <section class="view-picker" aria-label="Weergave kiezen">
+        <div class="view-picker-copy">
+          <strong>Hoe wil je het gesprek lezen?</strong>
+          <span>Kies de prettigste weergave.</span>
+        </div>
+        <div class="view-options" role="group" aria-label="Leesweergave">
+          <button class="view-option selected" type="button" data-view="cards" aria-pressed="true">
+            <span class="view-icon cards-icon" aria-hidden="true"><i></i><i></i></span>
+            <span>Gesprekskaarten</span>
+          </button>
+          <button class="view-option" type="button" data-view="large" aria-pressed="false">
+            <span class="view-icon large-icon" aria-hidden="true">Aa</span>
+            <span>Grote letters</span>
+          </button>
+          <button class="view-option" type="button" data-view="subtitles" aria-pressed="false">
+            <span class="view-icon subtitle-icon" aria-hidden="true"><i></i><i></i><i></i></span>
+            <span>Ondertitels</span>
+          </button>
+          <button class="view-option" type="button" data-view="speakers" aria-pressed="false">
+            <span class="view-icon columns-icon" aria-hidden="true"><i></i><i></i></span>
+            <span>Per spreker</span>
+          </button>
+        </div>
+      </section>
+
+      <section id="settingsPanel" class="settings-panel hidden">
+        <div>
+          <label for="absoluteThresholdSlider">Minimale spraaksterkte: <strong id="absoluteThresholdValue">−35 dBFS</strong></label>
+          <input id="absoluteThresholdSlider" type="range" min="-55" max="-20" step="1" value="-35" />
+          <small>Alleen geluid boven deze vaste grens gaat naar spraakherkenning. Richting −20 is strenger.</small>
+        </div>
+        <div>
+          <label for="marginSlider">Spraakgrens boven kamerruis: <strong id="marginValue">12 dB</strong></label>
+          <input id="marginSlider" type="range" min="6" max="24" step="1" value="12" />
+          <small>Hoger negeert meer achtergrondgeluid; lager pakt zachtere stemmen eerder op.</small>
+          <button id="calibrateButton" class="button secondary calibration-button" type="button">Opnieuw kalibreren (3 s)</button>
+        </div>
+        <div>
+          <label for="silenceSlider">Nieuwe tekstregel na stilte: <strong id="silenceValue">450 ms</strong></label>
+          <input id="silenceSlider" type="range" min="250" max="1200" step="50" value="450" />
+          <small>Korter voelt sneller; langer houdt zinnen vaker bij elkaar.</small>
+        </div>
+      </section>
+
+      <section class="transcript-panel" aria-live="polite" aria-label="Live transcriptie">
+        <div id="emptyState" class="empty-state">
+          <div class="pulse-ring"></div>
+          <h2>Begin maar met praten</h2>
+          <p>Iedere zender krijgt automatisch zijn eigen kleur.</p>
+        </div>
+        <div id="transcriptList" class="transcript-list"></div>
+      </section>
+
+      <footer>
+        Audio blijft lokaal. Alleen tijdelijke spraakfragmenten worden verwerkt en daarna verwijderd.
+      </footer>
+    </main>
+    <script src="/app.js"></script>
+  </body>
+</html>

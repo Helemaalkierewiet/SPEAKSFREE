@@ -1,0 +1,29 @@
+{
+  "sample_rate": 16000,
+  "channels": 1,
+  "sample_width_bits": 16,
+  "capture_block_ms": 100,
+  "stream_block_ms": 200,
+  "normalization": {
+    "lowercase": true,
+    "remove_punctuation": true,
+    "collapse_whitespace": true,
+    "numbers": "dutch_words"
+  },
+  "decision_thresholds": {
+    "max_wer": 0.35,
+    "max_omitted_word_rate": 0.15,
+    "min_critical_word_recall": 0.85,
+    "max_silence_words": 0,
+    "max_rtf_each_stream": 1.0,
+    "min_free_cpu_fraction": 0.15,
+    "max_memory_fraction": 0.8
+  },
+  "score_weights": {
+    "quality": 0.5,
+    "four_stream_throughput": 0.25,
+    "near_live_latency": 0.15,
+    "resources": 0.1
+  }
+}
+

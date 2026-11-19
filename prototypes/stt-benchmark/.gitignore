@@ -1,0 +1,25 @@
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Downloaded runtimes and models (large, reproducible, never commit)
+models/*
+!models/.gitkeep
+
+# Private voice recordings (never commit)
+recordings/*
+!recordings/.gitkeep
+
+# Generated benchmark output
+results/raw/*
+results/tmp/*
+!results/raw/.gitkeep
+!results/tmp/.gitkeep
+results/benchmark-results*.csv
+results/system-info.json
+
+# Local reference manifests can contain participant details.
+references/manifest.local.json
+references/private/
+

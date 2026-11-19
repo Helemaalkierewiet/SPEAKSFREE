@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f5f7fb" />
+    <title>DJI 4-kanaalsmeter</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header>
+        <div>
+          <p class="eyebrow">DJI Mic 3 · kanaaldiagnose</p>
+          <h1>Vier afzonderlijke volumemeters</h1>
+          <p class="intro">Geen opname en geen transcriptie. Alleen RAW-volume per DJI-kanaal.</p>
+        </div>
+        <span id="statusBadge" class="badge waiting">Niet gestart</span>
+      </header>
+
+      <section class="controls" aria-label="Microfoonbediening">
+        <div class="device-label"><strong>Wireless Mic Rx</strong><span>Native RAW WASAPI · browsermicrofoon wordt niet gebruikt</span></div>
+        <button id="startButton" class="button primary" type="button">Start meting</button>
+        <button id="stopButton" class="button secondary" type="button" disabled>Stop</button>
+      </section>
+
+      <section id="warningPanel" class="warning hidden" role="alert"></section>
+
+      <section class="meters" aria-label="Vier invoerkanalen">
+        <article class="meter-card channel-1" data-channel="0">
+          <div class="meter-heading"><span class="dot"></span><h2>TX1 · USB-kanaal 1</h2><span class="state">Stil</span></div>
+          <div class="meter-track"><div class="meter-fill"></div></div>
+          <div class="reading"><strong class="db">−∞ dBFS</strong><span class="peak">piek 0%</span></div>
+        </article>
+        <article class="meter-card channel-2" data-channel="1">
+          <div class="meter-heading"><span class="dot"></span><h2>TX2 · USB-kanaal 2</h2><span class="state">Stil</span></div>
+          <div class="meter-track"><div class="meter-fill"></div></div>
+          <div class="reading"><strong class="db">−∞ dBFS</strong><span class="peak">piek 0%</span></div>
+        </article>
+        <article class="meter-card channel-3" data-channel="2">
+          <div class="meter-heading"><span class="dot"></span><h2>TX3 · USB-kanaal 3</h2><span class="state">Stil</span></div>
+          <div class="meter-track"><div class="meter-fill"></div></div>
+          <div class="reading"><strong class="db">−∞ dBFS</strong><span class="peak">piek 0%</span></div>
+        </article>
+        <article class="meter-card channel-4" data-channel="3">
+          <div class="meter-heading"><span class="dot"></span><h2>TX4 · USB-kanaal 4</h2><span class="state">Stil</span></div>
+          <div class="meter-track"><div class="meter-fill"></div></div>
+          <div class="reading"><strong class="db">−∞ dBFS</strong><span class="peak">piek 0%</span></div>
+        </article>
+      </section>
+
+      <section class="diagnostics">
+        <div>
+          <h2>Werkelijke native instellingen</h2>
+          <dl id="settingsList">
+            <div><dt>Opnameroute</dt><dd>RAW WASAPI</dd></div>
+            <div><dt>Apparaat</dt><dd>—</dd></div>
+            <div><dt>Kanalen</dt><dd>—</dd></div>
+            <div><dt>Samplefrequentie</dt><dd>—</dd></div>
+          </dl>
+        </div>
+        <div>
+          <h2>Overeenkomst tussen kanalen</h2>
+          <div id="correlations" class="correlations"><span>Start de meting om te vergelijken.</span></div>
+          <p class="hint">Praat steeds in maar één transmitter. Alleen het bijbehorende kanaal mag dan uitslaan.</p>
+        </div>
+      </section>
+
+      <footer>Audio wordt alleen als losse volumeniveaus gelezen en niet opgeslagen of verstuurd.</footer>
+    </main>
+    <script src="/app.js"></script>
+  </body>
+</html>
